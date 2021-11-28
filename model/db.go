@@ -34,5 +34,5 @@ func InitDb() {
 	db.DB().SetMaxOpenConns(100)
 	db.DB().SetConnMaxIdleTime(10*time.Second)
 
-	defer db.Close()
+	//defer db.Close()
 }

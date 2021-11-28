@@ -1,8 +1,8 @@
 package errmsg
 
 const (
-	SUCCESS		= 200000
-	ERROR 		= 500000
+	SUCCESS		= 000000
+	ERROR 		= 999999
 	//code=1000x,用户模块的错误
 	ERROR_USER_EXIST		= 10001
 	ERROR_USERNAME_PASSWORD_WRONG	= 10002
