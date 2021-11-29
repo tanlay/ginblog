@@ -13,3 +13,15 @@ time="2021-11-29 19:49:01" level=info CostTime=63 DataSize=27 HostName=DESKTOP-6
 time="2021-11-29 20:13:02" level=info CostTime=2 DataSize=61 HostName=DESKTOP-64O5NQF IP=127.0.0.1 Method=POST Path=/api/v1/user/add UserAgent="ApiPOST Runtime +https://www.apipost.cn" status=200
 time="2021-11-29 20:13:10" level=info CostTime=1 DataSize=67 HostName=DESKTOP-64O5NQF IP=127.0.0.1 Method=POST Path=/api/v1/user/add UserAgent="ApiPOST Runtime +https://www.apipost.cn" status=200
 time="2021-11-29 20:13:16" level=info CostTime=1 DataSize=70 HostName=DESKTOP-64O5NQF IP=127.0.0.1 Method=POST Path=/api/v1/user/add UserAgent="ApiPOST Runtime +https://www.apipost.cn" status=200
+time="2021-11-29 20:33:43" level=info CostTime=24 DataSize=542 HostName=DESKTOP-64O5NQF IP=127.0.0.1 Method=GET Path=/api/v1/users UserAgent="ApiPOST Runtime +https://www.apipost.cn" status=200
+time="2021-11-29 20:34:01" level=info CostTime=2 DataSize=146 HostName=DESKTOP-64O5NQF IP=127.0.0.1 Method=GET Path=/api/v1/categories UserAgent="ApiPOST Runtime +https://www.apipost.cn" status=200
+time="2021-11-29 20:34:18" level=info CostTime=4 DataSize=2015 HostName=DESKTOP-64O5NQF IP=127.0.0.1 Method=GET Path=/api/v1/articles UserAgent="ApiPOST Runtime +https://www.apipost.cn" status=200
+time="2021-11-29 20:34:27" level=warning CostTime=0 DataSize=0 HostName=DESKTOP-64O5NQF IP=127.0.0.1 Method=GET Path=/api/v1/articles/info/8 UserAgent="ApiPOST Runtime +https://www.apipost.cn" status=404
+time="2021-11-29 20:34:32" level=warning CostTime=0 DataSize=0 HostName=DESKTOP-64O5NQF IP=127.0.0.1 Method=GET Path=/api/v1/articles/info/1 UserAgent="ApiPOST Runtime +https://www.apipost.cn" status=404
+time="2021-11-29 20:35:10" level=warning CostTime=0 DataSize=0 HostName=DESKTOP-64O5NQF IP=127.0.0.1 Method=GET Path=/api/v1/articles/info/ UserAgent="ApiPOST Runtime +https://www.apipost.cn" status=404
+time="2021-11-29 20:35:38" level=info CostTime=2 DataSize=228 HostName=DESKTOP-64O5NQF IP=127.0.0.1 Method=GET Path=/api/v1/article/info/3 UserAgent="ApiPOST Runtime +https://www.apipost.cn" status=200
+time="2021-11-29 20:36:48" level=info CostTime=1 DataSize=228 HostName=DESKTOP-64O5NQF IP=127.0.0.1 Method=GET Path=/api/v1/article/info/3 UserAgent="ApiPOST Runtime +https://www.apipost.cn" status=200
+time="2021-11-29 20:37:14" level=info CostTime=3 DataSize=323 HostName=DESKTOP-64O5NQF IP=127.0.0.1 Method=GET Path=/api/v1/article/list/3 UserAgent="ApiPOST Runtime +https://www.apipost.cn" status=200
+time="2021-11-29 20:37:19" level=info CostTime=2 DataSize=612 HostName=DESKTOP-64O5NQF IP=127.0.0.1 Method=GET Path=/api/v1/article/list/1 UserAgent="ApiPOST Runtime +https://www.apipost.cn" status=200
+time="2021-11-29 20:37:26" level=warning CostTime=0 DataSize=0 HostName=DESKTOP-64O5NQF IP=127.0.0.1 Method=GET Path=/api/v1/article/info UserAgent="ApiPOST Runtime +https://www.apipost.cn" status=404
+time="2021-11-29 20:37:50" level=info CostTime=3 DataSize=2015 HostName=DESKTOP-64O5NQF IP=127.0.0.1 Method=GET Path=/api/v1/articles UserAgent="ApiPOST Runtime +https://www.apipost.cn" status=200

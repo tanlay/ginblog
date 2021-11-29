@@ -40,10 +40,11 @@ func GetCateArticle(c *gin.Context) {
 	if pageNum == 0 {
 		pageNum = -1
 	}
-	data, code := model.GetCateArticle(id, pageSize, pageNum)
+	data, code, total:= model.GetCateArticle(id, pageSize, pageNum)
 	c.JSON(200,gin.H{
 		"status": code,
 		"data": data,
+		"total": total,
 		"message": errmsg.GetErrMsg(code),
 	})
 }
@@ -59,8 +60,7 @@ func GetArticleInfo(c *gin.Context) {
 	})
 }
 
-//TODO:GetArticles 查询文章列表
-
+//GetArticles 查询文章列表
 func GetArticles(c *gin.Context) {
 	pageSize, _:= strconv.Atoi(c.Query("pagesize"))
 	pageNum, _ := strconv.Atoi(c.Query("pagenum"))
@@ -71,10 +71,11 @@ func GetArticles(c *gin.Context) {
 	if pageNum == 0 {
 		pageNum = -1
 	}
-	data, code := model.GetArticles(pageSize,pageNum)
+	data, code, total := model.GetArticles(pageSize,pageNum)
 	c.JSON(200,gin.H{
 		"status": code,
 		"data": data,
+		"total": total,
 		"message": errmsg.GetErrMsg(code),
 	})
 }
