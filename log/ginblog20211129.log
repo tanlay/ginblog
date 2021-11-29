@@ -1,0 +1,2 @@
+time="2021-11-29 17:55:00" level=info CostTime=630 DataSize=100 HostName=DESKTOP-64O5NQF IP=127.0.0.1 Method=POST Path=/api/v1/upload UserAgent="ApiPOST Runtime +https://www.apipost.cn" status=200
+time="2021-11-29 17:56:11" level=info CostTime=720 DataSize=100 HostName=DESKTOP-64O5NQF IP=127.0.0.1 Method=POST Path=/api/v1/upload UserAgent="ApiPOST Runtime +https://www.apipost.cn" status=200
