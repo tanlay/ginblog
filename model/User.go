@@ -89,3 +89,21 @@ func ScryptPwd(password string) string {
 	fPwd := base64.StdEncoding.EncodeToString(HashPwd)
 	return fPwd
 }
+
+//登录验证
+
+func CheckLogin(username, password string) int {
+	var user User
+
+	db.Where("username=?", username).First(&user)
+	if user.ID == 0 {
+		return errmsg.ERROR_USER_NOT_EXIST
+	}
+	if ScryptPwd(password) != user.Password {
+		return errmsg.ERROR_USERNAME_PASSWORD_WRONG
+	}
+	if user.Role != 0 {
+		return errmsg.ERROR_USER_NO_PRIM
+	}
+	return errmsg.SUCCESS
+}
