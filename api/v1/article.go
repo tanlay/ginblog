@@ -29,9 +29,35 @@ func AddArticle(c *gin.Context) {
 	})
 }
 
-//TODO：查询分类下所有文章信息
+//GetCateArticle 查询分类下所有文章信息
+func GetCateArticle(c *gin.Context) {
+	id, _ := strconv.Atoi(c.Param("id"))
+	pageSize, _:= strconv.Atoi(c.Query("pagesize"))
+	pageNum, _ := strconv.Atoi(c.Query("pagenum"))
+	if pageSize == 0 {
+		pageSize = -1
+	}
+	if pageNum == 0 {
+		pageNum = -1
+	}
+	data, code := model.GetCateArticle(id, pageSize, pageNum)
+	c.JSON(200,gin.H{
+		"status": code,
+		"data": data,
+		"message": errmsg.GetErrMsg(code),
+	})
+}
 
-//TODO：查询单个文章信息
+//GetArticleInfo 查询单个文章
+func GetArticleInfo(c *gin.Context) {
+	id, _ := strconv.Atoi(c.Param("id"))
+	data, code := model.GetArticleInfo(id)
+	c.JSON(200,gin.H{
+		"status": code,
+		"data": data,
+		"message": errmsg.GetErrMsg(code),
+	})
+}
 
 //TODO:GetArticles 查询文章列表
 
@@ -45,8 +71,7 @@ func GetArticles(c *gin.Context) {
 	if pageNum == 0 {
 		pageNum = -1
 	}
-	data := model.GetCategories(pageSize,pageNum)
-	code = errmsg.SUCCESS
+	data, code := model.GetArticles(pageSize,pageNum)
 	c.JSON(200,gin.H{
 		"status": code,
 		"data": data,

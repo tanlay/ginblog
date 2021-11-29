@@ -7,7 +7,7 @@ import (
 
 type Article struct {
 	gorm.Model
-	Category	Category
+	Category	Category	`gorm:"foreignkey:Cid"`
 	Title		string 	`gorm:"type:varchar(100);not null" json:"title"`
 	Cid			int		`gorm:"type:int;not null" json:"cid"`
 	Desc		string	`gorm:"type:varchar(200)" json:"desc""`
@@ -25,19 +25,35 @@ func CreateArticle(data *Article) int {
 	return errmsg.SUCCESS
 }
 
-//TODO: 查询分类下所有文章
+//GetCateArticle 查询分类下所有文章
+func GetCateArticle(id, pageSize, pageNum int) ([]Article,int) {
+	var cateArtList []Article
+	err = db.Preload("Category").Limit(pageSize).Offset((pageNum-1)*pageSize).Where("cid =?",id).Find(&cateArtList).Error
+	if err != nil {
+		return nil, errmsg.ERROR_CATEGORY_NOT_EXIST
+	}
+	return cateArtList, errmsg.SUCCESS
+}
 
-//TODO: 查询单个文章
+//GetArticleInfo 查询单个文章
+func GetArticleInfo(id int) (Article,int){
+	var art Article
+	err = db.Preload("Category").Where("id= ?",id).First(&art).Error
+	if err != nil  {
+		return art, errmsg.ERROR_ARTICLE_NOT_EXIST
+	}
+	return art, errmsg.SUCCESS
+}
 
 //TODO: GetArticles 查询文章列表，传pageSize,pageNum,返回User列表的切片,需要总数
 
-func GetArticles(pageSize, pageNum int) []Category {
-	var cate []Category
-	err = db.Limit(pageSize).Offset((pageNum-1)*pageSize).Find(&cate).Error
+func GetArticles(pageSize, pageNum int) ([]Article,int) {
+	var articleList []Article
+	err = db.Preload("Category").Limit(pageSize).Offset((pageNum-1)*pageSize).Find(&articleList).Error
 	if err != nil && err != gorm.ErrRecordNotFound {
-		return nil
+		return nil, errmsg.ERROR
 	}
-	return cate
+	return articleList,errmsg.SUCCESS
 }
 
 //EditArticle 编辑文章信息
