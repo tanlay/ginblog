@@ -13,6 +13,7 @@ const (
 	ERROR_TOKEN_TYPE_ERONG	= 10007
 
 	//code=2000x,文章模块的错误
+	ERROR_CATEGORY_EXIST	= 20001
 	//code=3000x,分类模块的错误
 )
 
@@ -26,6 +27,7 @@ var codeMsg = map[int]string {
 	ERROR_TOKEN_TIMEOUT: "Token过期",
 	ERROR_TOKEN_WRONG: "Token错误",
 	ERROR_TOKEN_TYPE_ERONG: "Token格式错误",
+	ERROR_CATEGORY_EXIST: "分类已存在",
 }
 
 
