@@ -14,7 +14,7 @@ import (
 //Logger 自定义日志格式，输出到文件
 func Logger() gin.HandlerFunc {
 	filePath := "log/ginblog"
-	linkName := "latest_log.log"
+	//linkName := "latest_log.log"
 	src, err := os.OpenFile(filePath, os.O_RDWR|os.O_CREATE,0755)
 	if err != nil {
 		fmt.Println("err：", err.Error())
@@ -29,7 +29,7 @@ func Logger() gin.HandlerFunc {
 		filePath+"%Y%m%d.log",
 		rotalog.WithMaxAge(7*24*time.Hour),
 		rotalog.WithRotationTime(24*time.Hour),
-		rotalog.WithLinkName(linkName),
+		//rotalog.WithLinkName(linkName),
 		)
 
 		writeMap := lfshook.WriterMap{

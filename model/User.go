@@ -11,9 +11,9 @@ import (
 //User 用户结构
 type User struct {
 	gorm.Model
-	Username 	string	`gorm:"type:varchar(20);not null" json:"username"`
-	Password	string	`gorm:"type:varchar(20);not null" json:"password"`
-	Role		int	`gorm:"type:int" json:"role"`
+	Username 	string	`gorm:"type:varchar(20);not null" json:"username" validate:"required,min=4,max=20" label:"用户名"`
+	Password	string	`gorm:"type:varchar(20);not null" json:"password" validate:"required,min=5,max=25" label:"密码"`
+	Role		int	`gorm:"type:int;default:2" json:"role" validate:"required,gte=2" label:"角色码"`
 }
 
 //CheckUser 查询用户是否存在
@@ -102,7 +102,7 @@ func CheckLogin(username, password string) int {
 	if ScryptPwd(password) != user.Password {
 		return errmsg.ERROR_USERNAME_PASSWORD_WRONG
 	}
-	if user.Role != 0 {
+	if user.Role != 1 {
 		return errmsg.ERROR_USER_NO_PRIM
 	}
 	return errmsg.SUCCESS
