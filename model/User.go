@@ -46,13 +46,38 @@ func GetUsers(pageSize, pageNum int) []User {
 	return users
 }
 
-//EditUser 编辑用户
-
+//EditUser 编辑用户信息
+func EditUser(id int, data *User) int {
+	var user User
+	var maps = make(map[string]interface{})
+	maps["username"] = data.Username
+	maps["Role"] = data.Role
+	err = db.Model(&user).Where("id = ?",id).Update(maps).Error
+	if err != nil {
+		return errmsg.ERROR
+	}
+	return errmsg.SUCCESS
+}
 
 //DeleteUser 删除用户
-
+func DeleteUser(id int) int {
+	var user User
+	err = db.Where("id = ?",id).Delete(&user).Error
+	if err !=  nil {
+		return errmsg.ERROR
+	}
+	return errmsg.SUCCESS
+}
 
 //ScryptPwd 密码加密,入参：password,返回密码加密后的字符串
+
+/*
+BeforeSave 通过钩子函数实现加密,钩子函数名称固定为BeforeSave
+*/
+//func (u *User) BeforeSave() {
+//	u.Password = ScryptPwd(u.Password)
+//}
+
 func ScryptPwd(password string) string {
 	const KeyLen = 10
 	salt := make([]byte, 8)
