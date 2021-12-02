@@ -36,8 +36,8 @@ func InitRouter() {
 		pub.GET("users", v1.GetUsers)
 		pub.GET("categories", v1.GetCategories)
 		pub.GET("articles", v1.GetArticles)
-		pub.GET("article/info/:id", v1.GetArticleInfo)
-		pub.GET("article/list/:id", v1.GetCateArticle)
+		pub.GET("article/:id", v1.GetArticleInfo)
+		pub.GET("articles/cate/:id", v1.GetCateArticle)
 		pub.POST("login", v1.Login)
 	}
 	r.Run(utils.HttpPort)

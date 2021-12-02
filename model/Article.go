@@ -26,14 +26,14 @@ func CreateArticle(data *Article) int {
 }
 
 //GetCateArticle 查询分类下所有文章
-func GetCateArticle(id, pageSize, pageNum int) ([]Article,int,int) {
+func GetCateArticle(id, pageSize, pageNum int) ([]Article,int,int64) {
 	var (
 		cateArtList []Article
-		total int
+		total int64
 	)
-
-	err = db.Preload("Category").Limit(pageSize).Offset((pageNum-1)*pageSize).Where("cid =?",id).Find(&cateArtList).Count(&total).Error
-	if err != nil {
+	result := db.Preload("Category").Limit(pageSize).Offset((pageNum-1)*pageSize).Where("cid =?",id).Find(&cateArtList)
+	total = result.RowsAffected
+	if result.Error != nil {
 		return nil, errmsg.ERROR_CATEGORY_NOT_EXIST,0
 	}
 	return cateArtList, errmsg.SUCCESS,total
@@ -49,15 +49,16 @@ func GetArticleInfo(id int) (Article,int){
 	return art, errmsg.SUCCESS
 }
 
-//TODO: GetArticles 查询文章列表，传pageSize,pageNum,返回User列表的切片,需要总数
 
-func GetArticles(pageSize, pageNum int) ([]Article,int,int) {
+//GetArticles 查询文章列表，传pageSize,pageNum,返回User列表的切片,需要总数
+func GetArticles(pageSize, pageNum int) ([]Article,int,int64) {
 	var (
 		articleList []Article
-		total	int
+		total	int64
 	)
-	err = db.Preload("Category").Limit(pageSize).Offset((pageNum-1)*pageSize).Find(&articleList).Count(&total).Error
-	if err != nil && err != gorm.ErrRecordNotFound {
+	result := db.Preload("Category").Limit(pageSize).Offset((pageNum-1)*pageSize).Find(&articleList)
+	total = result.RowsAffected
+	if result.Error != nil && result.Error != gorm.ErrRecordNotFound {
 		return nil, errmsg.ERROR,0
 	}
 	return articleList,errmsg.SUCCESS,total

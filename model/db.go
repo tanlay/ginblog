@@ -30,6 +30,8 @@ func InitDb() {
 
 	db.AutoMigrate(&User{}, &Article{}, &Category{})
 
+	db.LogMode(true)		//卡其SQL日志
+
 	db.DB().SetMaxIdleConns(10)
 	db.DB().SetMaxOpenConns(100)
 	db.DB().SetConnMaxIdleTime(10*time.Second)

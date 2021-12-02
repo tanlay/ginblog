@@ -37,13 +37,14 @@ func CreateUser(data *User) int {
 }
 
 // GetUsers 查询用户列表，传pageSize,pageNum,返回User列表的切片
-func GetUsers(pageSize, pageNum int) ([]User,int) {
+func GetUsers(pageSize, pageNum int) ([]User,int64) {
 	var (
 		users []User
-		total	int
+		total	int64
 	)
-	err = db.Limit(pageSize).Offset((pageNum-1)*pageSize).Find(&users).Count(&total).Error
-	if err != nil && err != gorm.ErrRecordNotFound {
+	result := db.Model(&users).Limit(pageSize).Offset((pageNum-1)*pageSize).Find(&users)
+	total = result.RowsAffected
+	if result.Error != nil && result.Error != gorm.ErrRecordNotFound {
 		return nil, 0
 	}
 	return users, total
